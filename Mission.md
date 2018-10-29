@@ -4,7 +4,7 @@
 
 ## Description
 
-We expect you to implement two basic containers in C++ STL, set iiand priority queue.
+We expect you to implement three basic containers in C++ STL, set iiand priority queue.
 
 The methods are given below, and you can have fun with them.
 
@@ -51,6 +51,7 @@ Here, we simplify the promblem, you don't need to implement template or iterator
   * Not use recursive in **LLRB**
 * **Advance**:
   * Implement the templates
+  * Implement the iterators
   * Help us to improve the test-case
 
 ## Reference
