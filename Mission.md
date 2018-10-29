@@ -36,7 +36,7 @@ Here, we simplify the promblem, you don't need to implement template or iterator
 1. You must use **LLRB** as internal DS for set, and **Heap** for priority queue.
 2. Your implemention must pass all the test-case.
 
-## Specificaons
+## Specifications
 
 * **Programming Language**: It's recommended to use C++.
 
@@ -48,8 +48,8 @@ Here, we simplify the promblem, you don't need to implement template or iterator
 
 * **Basic**: 
   * Pass all test-case
-* **Advance**:
   * Not use recursive in **LLRB**
+* **Advance**:
   * Implement the templates
   * Help us to improve the test-case
 
