@@ -4,11 +4,7 @@
 
 ## Description
 
-<<<<<<< HEAD
-We expect you to implement three basic containers in C++ STL, set iiand priority queue.
-=======
-We expect you to implement two basic containers in C++ STL, set and priority queue.
->>>>>>> 050c39c9f19ddd0d0b71f814577a98ec12f6dbc2
+We expect you to implement three basic containers in C++ STL, set, priority queue and unordered map.
 
 The methods are given below, and you may have fun with them.
 
@@ -33,6 +29,18 @@ The methods are given below, and you may have fun with them.
      void pop();
    ```
 
+3. Unordered Map
+
+    ```cpp
+      bool empty() const;
+      size_type size() const;
+      void clear();
+      void insert(const value_type& value);
+      void erase(const key_type& key);
+      T& at(const Key& key);
+      size_type count(const Key& key);
+    ```
+
 To make your task easier, we have simplified the promblem, which means you don't need to implement a template or an iterator.  What may help is in this [repository](https://github.com/ThinCats/UniqueLab-2018-Autumn-Assignment1)
 
 ## Requirements
@@ -53,15 +61,9 @@ To make your task easier, we have simplified the promblem, which means you don't
 * **Basic**: 
   * Passing all test-cases
 * **Advance**:
-<<<<<<< HEAD
-  * Implement the templates
-  * Implement the iterators
-  * Help us to improve the test-case
-=======
   * Not using recursion in **LLRB**
   * Implementing the templates
   * Help us to improve the test-cases
->>>>>>> 050c39c9f19ddd0d0b71f814577a98ec12f6dbc2
 
 ## Reference
 
