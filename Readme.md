@@ -17,6 +17,8 @@
   # OR
   cmake .. -Dpri_test=on
   # OR
+  cmake .. -Dmap_test=on
+  # OR
   cmake .. -Dset_test=on -Dpri_test=on
   ```
   运行build下的相应文件
