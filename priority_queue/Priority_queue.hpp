@@ -1,3 +1,10 @@
+#ifdef TEST_DEBUG
+#define _PRIORITY_QUEUE_HPP
+#include <queue>
+#include <vector>
+typedef typename std::priority_queue<double, std::vector<double>> Priority_queue;
+#endif // DEBUG
+
 #ifndef _PRIORITY_QUEUE_HPP
 #define _PRIORITY_QUEUE_HPP
 
