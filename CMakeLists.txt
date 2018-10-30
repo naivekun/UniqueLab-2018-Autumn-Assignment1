@@ -10,6 +10,13 @@ add_subdirectory(unordered_map ${CMAKE_BINARY_DIR}/unordered_map)
 option(set_test "Enable test set" off)
 option(pri_test "Enable test pri" off)
 option(map_test "Enable test map" off)
+option(ALL "Enable ALL" off)
+
+if (ALL)
+  set(set_test on)
+  set(pri_test on)
+  set(map_test on)
+endif()
 
 if(set_test)
   add_executable(set_test set/set_test.cpp)

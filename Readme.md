@@ -7,7 +7,7 @@
 * 修改对应文件夹的hpp，添加自己定义的cpp
 * 使用cmake 构建
   ```sh
-  [-d build] && mkdir build
+  [-d build] || mkdir build
   cd build
   cmake ..
   ```
@@ -19,6 +19,6 @@
   # OR
   cmake .. -Dmap_test=on
   # OR
-  cmake .. -Dset_test=on -Dpri_test=on
+  cmake .. -DALL=on # Enable all test
   ```
   运行build下的相应文件
