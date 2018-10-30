@@ -15,7 +15,7 @@ using T = double;
 using Container = std::vector<T>;
 using Compare = std::less<T>;
 
-class Priorty_queue {
+class Priority_queue {
 public:
   typedef Container     container_type;
   typedef typename      container_type::value_type value_type;
