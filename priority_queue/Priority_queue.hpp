@@ -32,6 +32,7 @@ public:
 
 private:
   // TODO
+  container_type Heap_vec;
 }; // TODO
 
 #endif
