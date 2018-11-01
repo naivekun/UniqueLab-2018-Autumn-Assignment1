@@ -99,7 +99,8 @@ void Unordered_map::clear()
 {
     for(int i=0;i<const_hash_value;++i)
     {
-        delete_list(hash_table[i].first);
+        if(hash_table[i].first!=NULL)
+            delete_list(hash_table[i].first);
         hash_table[i].first=NULL;
         hash_table[i].key_value_count=0;
         hash_table[i].key_data="";
@@ -123,6 +124,11 @@ void Unordered_map::erase(const Unordered_map::key_type& key)
             hash_table[hash_value].mapped_data=hash_table[hash_value].first->mapped_data;
             hash_table[hash_value].first=hash_table[hash_value].first->next;
             delete erase_tmp;
+        }
+        else
+        {
+            hash_table[hash_value].key_data="";
+            hash_table[hash_value].mapped_data=0;
         }
         //delete hash_table[hash_value].first;
         
@@ -198,7 +204,7 @@ Unordered_map::size_type Unordered_map::count(const Unordered_map::key_type& key
 
 
 //TEST
-
+/*
 #include<iostream>
 #include<utility>
 int main()
@@ -226,9 +232,66 @@ int main()
     pig.erase(s1[2]+"qqqqq");
     for(int i=0;i<=7;++i)
     {
-        std::cout<<pig.count(s1[i])<<std::endl;
+        pig.erase(s1[i]);
             //std::cout<<pig.at(s1[i])<<std::endl;
     }
     std::cout<<pig.size()<<std::endl;
+
+
+    for(int i=0;i<=7;++i)
+    {
+        pig.insert(make_pair(s1[i],4.6*i));
+    }
+    for(int i=0;i<=7;++i)
+    {
+        std::cout<<pig.at(s1[i])<<std::endl;
+    }
     return 0;
+}*/
+#include <unordered_map>
+#include <vector>
+#include <string>
+#include <random>
+#include <iostream>
+
+std::string genRandomStr(int num) {
+    static std::random_device rd;
+    static std::mt19937 e(rd());
+    static std::uniform_int_distribution<int> dis('!', '~');
+
+    std::string tmp;
+    for (int i=0; i < num; i++)
+        tmp.push_back(dis(e));
+    return tmp;
+}
+
+int main()
+{
+    std::random_device rand_dev;
+    std::default_random_engine e(rand_dev());
+    std::uniform_real_distribution<Unordered_map::mapped_type> dis(0, 100);
+
+    std::unordered_map<Unordered_map::key_type, Unordered_map::mapped_type> std_map;
+    Unordered_map custom_map;
+    for (unsigned times = 0; times < 10; ++times) {
+        for (unsigned i = 0; i != 80000; ++i) {
+            Unordered_map::mapped_type num = dis(e);
+            auto key = genRandomStr(int(num) % 500 + 1);
+            std_map.insert(Unordered_map::value_type(key, num));
+            custom_map.insert(Unordered_map::value_type(key, num));
+            printf("%d\n",i);
+        }
+
+        if (times % 2) {
+            for (auto s:std_map) {
+                custom_map.erase(s.first);
+            }
+            std_map.clear();
+        } else {
+            custom_map.clear();
+            std_map.clear();
+        }
+        // printf("%d\n",times);
+   }
+   return 0;
 }
