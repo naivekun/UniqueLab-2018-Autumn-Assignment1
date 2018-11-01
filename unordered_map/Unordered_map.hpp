@@ -33,6 +33,30 @@ public:
 
 private:
   // TODO
+  const int const_hash_value=2;
+  int total_value_count=0;
 
+  struct LIST_NODE
+  {
+      key_type key_data;
+      mapped_type mapped_data;
+      struct LIST_NODE* next;
+  };
+
+  struct HASH_TABLE
+  {
+      key_type key_data;
+      mapped_type mapped_data;
+      struct LIST_NODE* first=NULL;
+      int key_value_count=0;
+      HASH_TABLE()
+      {
+          first=NULL;
+          key_value_count=0;
+      }
+  }hash_table[2];
+  
+  void delete_list(struct LIST_NODE* list_begin);
+  int hash_func(key_type key);
 }; // TODO
 #endif

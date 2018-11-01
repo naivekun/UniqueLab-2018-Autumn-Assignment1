@@ -20,9 +20,28 @@ public:
   void insert(const key_type& key);
   size_type erase(const key_type& key);
   size_type count(const key_type& key);
+  Set();
 
 private:
   // TODO
+  struct TREE_NODE
+  {
+      key_type data;
+      int color;
+      struct TREE_NODE* left;
+      struct TREE_NODE* right;
+      //struct TREE_NODE* parent;
+      TREE_NODE()
+      {
+          color=0;  //1-红色 0-黑色
+      }
+  };
+  int total_data_count=0;
+  struct TREE_NODE* root;
+  struct TREE_NODE* rotate_left(struct TREE_NODE* head);
+  struct TREE_NODE* rotate_right(struct TREE_NODE* head);
+  void split_node(struct TREE_NODE* head);
+
 }; // TODO
 
 #endif

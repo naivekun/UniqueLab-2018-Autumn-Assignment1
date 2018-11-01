@@ -23,8 +23,11 @@ void Priority_queue::push(const value_type& value)
     while(push_index!=0)
     {
         push_index_parent=(push_index-1)/2;
-        if(Heap_vec[push_index]<Heap_vec[push_index_parent])
+        if(Heap_vec[push_index]>Heap_vec[push_index_parent])
+        {
             std::swap(Heap_vec[push_index],Heap_vec[push_index_parent]);
+            push_index=push_index_parent;
+        }
         else
             break;
     }
@@ -44,9 +47,9 @@ void Priority_queue::pop()
     while(1)
     {
         if(pop_index*2+1<=Heap_vec.size())
-            if(Heap_vec[pop_index*2-1]<Heap_vec[pop_index*2+1-1])
+            if(Heap_vec[pop_index*2-1]>Heap_vec[pop_index*2+1-1])
             {
-                if(Heap_vec[pop_index-1]>Heap_vec[pop_index*2-1])
+                if(Heap_vec[pop_index-1]<Heap_vec[pop_index*2-1])
                 {
                     std::swap(Heap_vec[pop_index-1],Heap_vec[pop_index*2-1]);
                     pop_index=pop_index*2;
@@ -56,7 +59,7 @@ void Priority_queue::pop()
             }
             else
             {
-                if(Heap_vec[pop_index-1]>Heap_vec[pop_index*2+1-1])
+                if(Heap_vec[pop_index-1]<Heap_vec[pop_index*2+1-1])
                 {
                     std::swap(Heap_vec[pop_index-1],Heap_vec[pop_index*2+1-1]);
                     pop_index=pop_index*2+1;
@@ -66,7 +69,7 @@ void Priority_queue::pop()
             }
 
         else if(pop_index*2<=Heap_vec.size())
-            if(Heap_vec[pop_index-1]>Heap_vec[pop_index*2-1])
+            if(Heap_vec[pop_index-1]<Heap_vec[pop_index*2-1])
                 {
                     std::swap(Heap_vec[pop_index-1],Heap_vec[pop_index*2-1]);
                     pop_index=pop_index*2;
