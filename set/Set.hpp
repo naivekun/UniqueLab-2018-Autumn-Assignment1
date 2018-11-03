@@ -20,28 +20,40 @@ public:
   void insert(const key_type& key);
   size_type erase(const key_type& key);
   size_type count(const key_type& key);
-  Set();
+  //Set();
 
-private:
+//private:
   // TODO
   struct TREE_NODE
   {
       key_type data;
-      int color;
+      bool color;
       struct TREE_NODE* left;
       struct TREE_NODE* right;
       //struct TREE_NODE* parent;
       TREE_NODE()
       {
-          color=0;  //1-红色 0-黑色
+          color=0;  //1-?? 0-??
+          left=NULL;
+          right=NULL;
       }
   };
   int total_data_count=0;
-  struct TREE_NODE* root;
+  struct TREE_NODE* root=NULL;
   struct TREE_NODE* rotate_left(struct TREE_NODE* head);
   struct TREE_NODE* rotate_right(struct TREE_NODE* head);
-  void split_node(struct TREE_NODE* head);
-
+  struct TREE_NODE* split_node(struct TREE_NODE* head);
+  struct TREE_NODE* fix_to_be_left(struct TREE_NODE* head);
+  struct TREE_NODE* move_red_right(struct TREE_NODE* head);
+  struct TREE_NODE* delete_max(struct TREE_NODE* head);
+  struct TREE_NODE* move_red_left(struct TREE_NODE* head);
+  struct TREE_NODE* delete_min(struct TREE_NODE* head);
+  struct TREE_NODE* delete_main(struct TREE_NODE* head,key_type key);
+  struct TREE_NODE* insert_into_tree(struct TREE_NODE* head,key_type key);
+  key_type get_min(struct TREE_NODE* head);
+  void clear_func(struct TREE_NODE* head);
+//   void debug(struct TREE_NODE* head);
+  bool isred(struct TREE_NODE* head);
 }; // TODO
 
 #endif

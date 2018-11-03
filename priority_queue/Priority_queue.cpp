@@ -83,23 +83,23 @@ void Priority_queue::pop()
 }
 
 //TEST
-/*
-#include<iostream>
-int main(int argc, char const *argv[])
-{
-    Priority_queue pig;
-    double a[11]={0,5,1,2,8,4,65,4,7,5,38};
-    for(int i=1;i<=10;++i)
-    {
-        pig.push(a[i]);
-    }
-    while(!pig.empty())
-    {
-        printf("%.0lf ",pig.top());
-        pig.pop();
-    }
+// /*
+// #include<iostream>
+// int main(int argc, char const *argv[])
+// {
+//     Priority_queue pig;
+//     double a[11]={0,5,1,2,8,4,65,4,7,5,38};
+//     for(int i=1;i<=10;++i)
+//     {
+//         pig.push(a[i]);
+//     }
+//     while(!pig.empty())
+//     {
+//         printf("%.0lf ",pig.top());
+//         pig.pop();
+//     }
         
 
-    return 0;
-}
-*/
+//     return 0;
+// }
+// */

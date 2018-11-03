@@ -26,7 +26,6 @@ void Unordered_map::insert(const Unordered_map::value_type& value)
 {
     int hash_value=hash_func(value.first);
     
-
     //查找重复
     if(hash_table[hash_value].first!=NULL)
     {
@@ -50,7 +49,7 @@ void Unordered_map::insert(const Unordered_map::value_type& value)
     
 
     //插入
-    hash_table[hash_value].key_value_count+=1;
+    hash_table[hash_value].key_value_count+=1; //糟糕的实现，不应再hash_table中存数据，应直接挂链表起点，懒得重构。。。
     total_value_count+=1;
 
     if(hash_table[hash_value].key_value_count>1)
@@ -81,7 +80,6 @@ void Unordered_map::insert(const Unordered_map::value_type& value)
     }
     
 }
-
 
 void Unordered_map::delete_list(struct LIST_NODE* list_begin)
 {
@@ -184,7 +182,6 @@ Unordered_map::mapped_type& Unordered_map::at(const Unordered_map::key_type& key
 Unordered_map::size_type Unordered_map::count(const Unordered_map::key_type& key)
 {
     int hash_value=hash_func(key);
-    //return hash_table[hash_value].key_value_count>0?1:0;
     if(hash_table[hash_value].key_data==key)
     {
         return 1;
@@ -204,94 +201,94 @@ Unordered_map::size_type Unordered_map::count(const Unordered_map::key_type& key
 
 
 //TEST
-/*
-#include<iostream>
-#include<utility>
-int main()
-{
-    Unordered_map pig;
-    std::string s1[50]={
-        "lalala",
-        "kjnk",
-        "sldnclaldkc",
-        "sdlcnjsdnc",
-        "jnjnjnc",
-        "jnjnjncasd",
-        "sldklksf",
-        "ooooooo"
-    };
+// /*
+// #include<iostream>
+// #include<utility>
+// int main()
+// {
+//     Unordered_map pig;
+//     std::string s1[50]={
+//         "lalala",
+//         "kjnk",
+//         "sldnclaldkc",
+//         "sdlcnjsdnc",
+//         "jnjnjnc",
+//         "jnjnjncasd",
+//         "sldklksf",
+//         "ooooooo"
+//     };
     
-    for(int i=0;i<=7;++i)
-    {
-        pig.insert(make_pair(s1[i],5.666*i));
-    }
-    for(int i=0;i<=7;++i)
-    {
-        std::cout<<pig.at(s1[i])<<std::endl;
-    }
-    pig.erase(s1[2]+"qqqqq");
-    for(int i=0;i<=7;++i)
-    {
-        pig.erase(s1[i]);
-            //std::cout<<pig.at(s1[i])<<std::endl;
-    }
-    std::cout<<pig.size()<<std::endl;
+//     for(int i=0;i<=7;++i)
+//     {
+//         pig.insert(make_pair(s1[i],5.666*i));
+//     }
+//     for(int i=0;i<=7;++i)
+//     {
+//         std::cout<<pig.at(s1[i])<<std::endl;
+//     }
+//     pig.erase(s1[2]+"qqqqq");
+//     for(int i=0;i<=7;++i)
+//     {
+//         pig.erase(s1[i]);
+//             //std::cout<<pig.at(s1[i])<<std::endl;
+//     }
+//     std::cout<<pig.size()<<std::endl;
 
 
-    for(int i=0;i<=7;++i)
-    {
-        pig.insert(make_pair(s1[i],4.6*i));
-    }
-    for(int i=0;i<=7;++i)
-    {
-        std::cout<<pig.at(s1[i])<<std::endl;
-    }
-    return 0;
-}*/
-#include <unordered_map>
-#include <vector>
-#include <string>
-#include <random>
-#include <iostream>
+//     for(int i=0;i<=7;++i)
+//     {
+//         pig.insert(make_pair(s1[i],4.6*i));
+//     }
+//     for(int i=0;i<=7;++i)
+//     {
+//         std::cout<<pig.at(s1[i])<<std::endl;
+//     }
+//     return 0;
+// }*/
+// #include <unordered_map>
+// #include <vector>
+// #include <string>
+// #include <random>
+// #include <iostream>
 
-std::string genRandomStr(int num) {
-    static std::random_device rd;
-    static std::mt19937 e(rd());
-    static std::uniform_int_distribution<int> dis('!', '~');
+// std::string genRandomStr(int num) {
+//     static std::random_device rd;
+//     static std::mt19937 e(rd());
+//     static std::uniform_int_distribution<int> dis('!', '~');
 
-    std::string tmp;
-    for (int i=0; i < num; i++)
-        tmp.push_back(dis(e));
-    return tmp;
-}
+//     std::string tmp;
+//     for (int i=0; i < num; i++)
+//         tmp.push_back(dis(e));
+//     return tmp;
+// }
 
-int main()
-{
-    std::random_device rand_dev;
-    std::default_random_engine e(rand_dev());
-    std::uniform_real_distribution<Unordered_map::mapped_type> dis(0, 100);
+// int main()
+// {
+//     std::random_device rand_dev;
+//     std::default_random_engine e(rand_dev());
+//     std::uniform_real_distribution<Unordered_map::mapped_type> dis(0, 100);
 
-    std::unordered_map<Unordered_map::key_type, Unordered_map::mapped_type> std_map;
-    Unordered_map custom_map;
-    for (unsigned times = 0; times < 10; ++times) {
-        for (unsigned i = 0; i != 80000; ++i) {
-            Unordered_map::mapped_type num = dis(e);
-            auto key = genRandomStr(int(num) % 500 + 1);
-            std_map.insert(Unordered_map::value_type(key, num));
-            custom_map.insert(Unordered_map::value_type(key, num));
-            printf("%d\n",i);
-        }
+//     std::unordered_map<Unordered_map::key_type, Unordered_map::mapped_type> std_map;
+//     Unordered_map custom_map;
+//     for (unsigned times = 0; times < 10; ++times) {
+//         for (unsigned i = 0; i != 80000; ++i) {
+//             Unordered_map::mapped_type num = dis(e);
+//             auto key = genRandomStr(int(num) % 500 + 1);
+//             std_map.insert(Unordered_map::value_type(key, num));
+//             custom_map.insert(Unordered_map::value_type(key, num));
+//             printf("%d\n",i);
+//         }
 
-        if (times % 2) {
-            for (auto s:std_map) {
-                custom_map.erase(s.first);
-            }
-            std_map.clear();
-        } else {
-            custom_map.clear();
-            std_map.clear();
-        }
-        // printf("%d\n",times);
-   }
-   return 0;
-}
+//         if (times % 2) {
+//             for (auto s:std_map) {
+//                 custom_map.erase(s.first);
+//             }
+//             std_map.clear();
+//         } else {
+//             custom_map.clear();
+//             std_map.clear();
+//         }
+//         // printf("%d\n",times);
+//    }
+//    return 0;
+// }
